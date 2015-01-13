@@ -1,6 +1,10 @@
 <?php
 namespace Mantisbt;
 
+use Mantisbt\Client\Exception as MantisbtException;
+use Mantisbt\Client\Account as MantisbtAccount;
+use Mantisbt\Result\Issue;
+
 class Client
 {
     const MBT_SOAP_API = '/api/soap/mantisconnect.php';
@@ -24,6 +28,11 @@ class Client
     protected $wsdl;
 
     /**
+     * @var \Mantisbt\Client\Account
+     */
+    protected $account;
+
+    /**
      * @param null|string $uri The full URI of the installed MantisBT bugtracker
      */
     function __construct($uri = null)
@@ -35,12 +44,12 @@ class Client
 
     /**
      * @return string
-     * @throw \DomainException
+     * @throw MantisbtException
      */
     public function getUri()
     {
         if (null === $this->uri) {
-            throw new \DomainException('Base URI is required');
+            throw new MantisbtException('Base URI is required');
         }
         return $this->uri;
     }
@@ -99,15 +108,51 @@ class Client
     }
 
     /**
+     * @return MantisbtAccount
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * @param MantisbtAccount $account
+     * @return Client
+     */
+    public function setAccount(MantisbtAccount $account)
+    {
+        $this->account = $account;
+        return $this;
+    }
+
+    /**
      * Checks the minimum version of MantisBT Tracker
      *
      * @param string $version
      * @return bool
+     * @throws \SoapFault
      */
     public function checkVersion($version = self::MBT_MIN_VERSION)
     {
         $serverVersion = $this->getSoapClient()->__soapCall('mc_version', []);
         $result = version_compare($serverVersion, $version, '>=');
+        return $result;
+    }
+
+    /**
+     * Retrieves the issue from MantisBT Tracker providing an ID
+     *
+     * @param $issueId
+     * @return Issue
+     */
+    public function getIssue($issueId)
+    {
+        $result = $this->getSoapClient()->__soapCall('mc_issue_get', [
+            'username' => $this->getAccount()->getUsername(),
+            'password' => $this->getAccount()->getPassword(),
+            'issue_id' => $issueId,
+        ]);
+//        return new Issue($result);
         return $result;
     }
 }
