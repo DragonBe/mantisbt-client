@@ -44,12 +44,19 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($client->getSoapClient() instanceof \SoapClient);
     }
 
-    public function testClientUsesNativeSoapClient()
+    public function testCanOverrideUriSettings()
     {
         $home = 'http://mantisbt.example.com';
-        $client = new Client($home);
-//        $this->assertTrue($client->getSoapClient() instanceof \SoapClient);
+        $client = new Client();
+        $client->setUri($home);
         $this->assertSame($home, $client->getUri());
+    }
+
+    public function testClientUsesNativeSoapClient()
+    {
+        $client = new Client();
+        $client->setWsdl($this->wsdl);
+        $this->assertTrue($client->getSoapClient() instanceof \SoapClient);
     }
 
     public function testCanVerifyInstallationVersion()
