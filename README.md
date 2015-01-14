@@ -2,6 +2,8 @@
 
 This package is a client to interact with [MantisBT] API interface and allows you to retrieve, update and create issues, manage accounts and get progress information.
 
+[![Build Status](https://travis-ci.org/DragonBe/mantisbt-client.svg)](https://travis-ci.org/DragonBe/mantisbt-client)
+
 ## Composer
 
 The easiest way to add this project to your application is to use [Composer]. First, get the `composer.phar` if you don't have it already.
