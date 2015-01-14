@@ -103,7 +103,10 @@ class Member
         return $this;
     }
 
-    protected function populate($data)
+    /**
+     * @param \stdClass $data
+     */
+    protected function populate(\stdClass $data)
     {
         $this->setMemberId($data->id)
             ->setName($data->name)

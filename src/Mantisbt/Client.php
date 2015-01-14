@@ -152,7 +152,6 @@ class Client
             'password' => $this->getAccount()->getPassword(),
             'issue_id' => $issueId,
         ]);
-//        return new Issue($result);
-        return $result;
+        return new Issue($result);
     }
 }

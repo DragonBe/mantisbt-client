@@ -8,6 +8,23 @@ function getIssueData($id)
     $data->project = getItem('project');
     $data->category = 'General';
     $data->priority = getItem('priority');
+    $data->severity = getItem('severity');
+    $data->status = getItem('status');
+    $data->reporter = getMemberData();
+    $data->summary = 'Summary';
+    $data->reproducibility = getItem('reproducibility');
+    $data->date_submitted = date('r');
+    $data->sponsorship_total = (int) rand(0, 20);
+    $data->handler = getMemberData();
+    $data->projection = getItem('projection');
+    $data->eta = getItem('eta');
+    $data->resolution = getItem('resolution');
+    $data->description = 'Description';
+    $data->attachments = array ();
+    $data->due_date = date('r');
+    $data->monitors = array ();
+    $data->sticky = false;
+    $data->tags = array ();
     return $data;
 }
 
@@ -21,10 +38,11 @@ function getItem($itemName)
 
 function getMemberData()
 {
+    $id = (int) rand(1, 9999);
     $member = new \stdClass();
-    $member->id = (int) rand(1, 9999);
-    $member->name = 'testuser';
-    $member->real_name = 'Test User';
-    $member->email = 'test@example.com';
+    $member->id = $id;
+    $member->name = 'testuser' . $id;
+    $member->real_name = 'Test User ' . $id;
+    $member->email = 'test' . $id . '@example.com';
     return $member;
 }
