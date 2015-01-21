@@ -6,7 +6,7 @@ This package is a client to interact with [MantisBT] API interface and allows yo
 
 We want to ensure you get the best quality, so this client comes with unit tests (automated testing provided by [Travis-CI]) and code quality analysis provided by [SensioLabsInsight].
 
-[![Build Status](https://travis-ci.org/DragonBe/mantisbt-client.svg)](https://travis-ci.org/DragonBe/mantisbt-client) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/957c5fcc-3c90-49ae-b366-f8ad4fa7d078/mini.png)](https://insight.sensiolabs.com/projects/957c5fcc-3c90-49ae-b366-f8ad4fa7d078)
+[![Build Status](https://travis-ci.org/DragonBe/mantisbt-client.svg)](https://travis-ci.org/DragonBe/mantisbt-client) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/957c5fcc-3c90-49ae-b366-f8ad4fa7d078/mini.png)](https://insight.sensiolabs.com/projects/957c5fcc-3c90-49ae-b366-f8ad4fa7d078) [![Code Climate](https://codeclimate.com/github/DragonBe/mantisbt-client/badges/gpa.svg)](https://codeclimate.com/github/DragonBe/mantisbt-client) [![Test Coverage](https://codeclimate.com/github/DragonBe/mantisbt-client/badges/coverage.svg)](https://codeclimate.com/github/DragonBe/mantisbt-client)
 
 ## Composer
 
